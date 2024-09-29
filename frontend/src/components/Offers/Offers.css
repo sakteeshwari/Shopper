@@ -1,0 +1,35 @@
+  .offers{
+    background: linear-gradient(180deg,#fde1ff 0%,#e1ffea22 60%);  
+}
+.offers-left button{
+    width: 140px;
+    height: 45px;
+    border-radius: 35px;
+    background: #ff4141;
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 30px;
+    cursor: pointer;
+}
+
+@media (min-width:768px) {
+    .offers-left button{
+        width: 200px;
+        font-size: 18px;
+        font-weight: 600;
+        height: 50px;
+    }
+}
+
+
+@media (min-width:1024px) {
+    .offers-left button{
+        width: 250px;
+        font-size: 22px;
+        font-weight: 600;
+        height: 60px;
+    }
+}
+
