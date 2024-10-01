@@ -9,6 +9,7 @@ const jwt=require("jsonwebtoken")
 const multer=require("multer")
 const path=require("path");
 const { type } = require('os');
+const { log } = require('console');
 
 // Initialize an Express application
 const app = express();
@@ -27,8 +28,8 @@ app.use(express.json());
 mongoose.connect("mongodb+srv://sakthijessy26:123@cluster0.xe8oo.mongodb.net/E-com_Shopper")
 
 // API Creation
-app.post("/",(req,res)=>{
-      res.json("Express App is Running")
+app.get("/",(req,res)=>{
+      res.send("Express App is Running")
 })
 
 //Image Storage Engine
@@ -45,6 +46,7 @@ const upload=multer({storage:storage})
 app.use("/images",express.static("upload/images"))
 
 app.post("/upload",upload.single("product"),(req,res)=>{
+  console.log(req)
       res.json({
         success:1,
           image_url:`http://localhost:${port}/images/${req.file.filename}`
@@ -66,7 +68,7 @@ const Product=mongoose.model("Product",{
     required:true,
   },
   category:{
-    type:Number,
+    type:String,
     required:true,
   },
   new_price:{
@@ -88,14 +90,29 @@ const Product=mongoose.model("Product",{
   
 })
 
-app.post("./addproduct",async (req,res)=>{
+app.post("/addproduct",async (req,res)=>{
+
+  console.log("sucess"); // Log the request body to see if all required fields are present
+  let products=await Product.find({})
+  let id;
+  if(products.length>0)
+  {
+    let last_product_array=products.slice(-1);
+    let last_product=last_product_array[0]
+    id=last_product.id+1;
+  }
+  else{
+    id=1;
+  }
+
   const product=new Product({
-    id:req.body.id,
+    id:id,
     name:req.body.name,
     image:req.body.image,
     category:req.body.category,
-    new_price:req.body.new_price,
     old_price:req.body.old_price,
+    new_price:req.body.new_price,
+    
   })
   console.log(product);
   await product.save();
@@ -104,6 +121,24 @@ app.post("./addproduct",async (req,res)=>{
     success:true,
     name:req.body.name,
   })
+})
+
+// creating api for deleting products
+
+app.post("/removeproduct",async(req,res)=>{
+  await Product.findOneAndDelete({id:req.body.id});
+  console.log("Removed")
+  res.json({
+    success:true,
+    name:req.body.name
+  })
+})
+
+// creating api for getting all products
+app.get("/allproducts",async(req,res)=>{
+  let products=await Product.find({});
+  console.log("all products fetched")
+  res.send(products)
 })
 
 app.listen(port, (error) => {

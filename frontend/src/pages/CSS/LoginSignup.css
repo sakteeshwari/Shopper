@@ -32,7 +32,7 @@
     height: 72px;
     color: white;
     background: #ff4141;
-    margin-top: 30px;
+    margin: 30px auto 0 auto;
     border: none;
     font-size: 25px;
     font-weight: 500;
@@ -58,21 +58,24 @@
     font-weight: 500;
 }
 
-@media (max-width:640px) {
+@media (max-width:800px) {
     .loginsignup{
         padding: 50px;
     }
     .loginsignup-container{
+        margin-top: 20px;
         width: 100%;
+        display: flex;
+        flex-direction: column;
     }
     .loginsignup-fields input{
         height: 40px;
     }
     .loginsignup-container button{
         font-size: 16px;
-        margin-left: 50px;
         width: 150px;
         height: 45px;
+        margin: 30px auto;
         
     }
 }
