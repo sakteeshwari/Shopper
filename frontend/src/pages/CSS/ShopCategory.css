@@ -76,3 +76,10 @@
     }
 
 }
+
+@media (max-width:800px) {
+ .shopcategory-banner{
+    
+    margin-top: 60px;
+ }
+}
