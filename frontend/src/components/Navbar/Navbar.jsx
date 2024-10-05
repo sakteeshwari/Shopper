@@ -37,7 +37,12 @@ const Navbar = () => {
       <Link to={"/kids"}> <li onClick={()=>{setMenu("kids")}} >Kids{menu==="kids"?<hr/>:<></>}</li></Link> 
     </ul>
     <div className='nav-login-cart '>
-      <Link to={"/login"}><button className=''>Login</button></Link>
+      {
+        localStorage.getItem('auth-token')
+        ?<button onClick={()=>{localStorage.removeItem('auth-token');window.location.replace('/')}}>Logout</button>
+        : <Link to={"/login"}><button className=''>Login</button></Link>
+      }
+     
       
      <Link to={"/cart"}> <img src={cart_icon} className='' alt="" /></Link>
      <div className='nav-cart-count '>{getTotalCartItems()}</div>

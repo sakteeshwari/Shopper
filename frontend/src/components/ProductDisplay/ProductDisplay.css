@@ -40,7 +40,6 @@
 }
 .productdisplay-right-prices{
     display: flex;
-    /* flex-direction: row; */
     margin: 35px 0px;
     gap: 30px;
     font-size: 24px;
@@ -109,5 +108,16 @@
     .productdisplay-right{
         margin-top: 40px;
         margin-left: 10px;
+    }
+}
+
+@media (max-width:600px) {
+    .productdisplay-img-list img{
+        height: 80px;
+        width: 100px;
+    }
+    .productdisplay-main-img{
+        width: 400px;
+        height: 368px;
     }
 }
