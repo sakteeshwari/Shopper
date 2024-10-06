@@ -19,6 +19,7 @@ function App() {
       <BrowserRouter>
         <Navbar></Navbar>
         <Routes>
+        <Route path='/' element={<Shop></Shop>}></Route>
           <Route path='/shop' element={<Shop></Shop>}></Route>
           <Route path='/mens' element={<ShopCategory category="men" banner={men_banner}></ShopCategory>}></Route>
           <Route path='/womens' element={<ShopCategory category="women" banner={women_banner}></ShopCategory>}></Route>
@@ -29,7 +30,7 @@ function App() {
           <Route path='/cart' element={<Cart></Cart>}></Route>
           <Route path='/login' element={<LoginSignup></LoginSignup>}></Route>
         </Routes>
-        <Shop></Shop>
+        
         <Footer></Footer>
       </BrowserRouter>
 
